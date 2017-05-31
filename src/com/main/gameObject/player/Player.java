@@ -59,8 +59,8 @@ public class Player extends GameObject {
 
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		
+		x+=getVelX();
+		y+=getVelY();
 	}
 
 }
