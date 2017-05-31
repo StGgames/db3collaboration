@@ -1,0 +1,68 @@
+package com.main.gameObject.coin;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+
+public class Coin extends GameObject {
+
+	public BufferedImage img;
+	
+	public Coin(ID Id, int x, int y, String pathToImage) {
+		super(Id, x, y);
+		
+		try {
+			img = ImageIO.read(getClass().getResourceAsStream(pathToImage));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void render(Graphics g) {
+		g.drawImage(img, x, y, null);
+	}
+
+	@Override
+	public void tick() {
+		
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return new Rectangle(x,y,32,32);
+	}
+
+	@Override
+	public float getVelY() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public float getVelX() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setVelY(float velY) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setVelX(float velX) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

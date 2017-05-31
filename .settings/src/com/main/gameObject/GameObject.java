@@ -7,9 +7,10 @@ public abstract class GameObject {
 	protected int x;
 	protected int y;
 	private ID Id;
-	private float velX, velY;
+	protected float velX;
+	protected float velY;
 	public GameObject(ID Id, int x, int y) {
-		this.setId(Id);
+		this.Id = Id;
 		this.x = x;
 		this.y = y;
 		this.setVelX(0);
@@ -20,29 +21,17 @@ public abstract class GameObject {
 	
 	public abstract void tick();
 
-	public float getVelY() {
-		return velY;
-	}
+	public abstract float getVelY();
 
-	public void setVelY(float velY) {
-		this.velY = velY;
-	}
+	public abstract void setVelY(float velY);
 
-	public float getVelX() {
-		return velX;
-	}
+	public abstract float getVelX();
 
-	public void setVelX(float velX) {
-		this.velX = velX;
-	}
+	public abstract void setVelX(float velX);
 	
 	public abstract Rectangle getBounds();
 
 	public ID getId() {
 		return Id;
-	}
-
-	public void setId(ID id) {
-		Id = id;
 	}
 }
