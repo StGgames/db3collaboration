@@ -16,6 +16,8 @@ import com.main.gameObject.player.Player;
 import com.main.gameObject.player.hud.HUD;
 import com.main.gameStates.GameStates;
 
+import com.main.keyinput;
+
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 
