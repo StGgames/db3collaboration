@@ -36,6 +36,7 @@ public class Game extends Canvas implements Runnable {
 			handler.addObject(new Coin(ID.COIN, r.nextInt(800), r.nextInt(600), "/Coin.png"));
 			handler.addObject(new Coin(ID.COIN, r.nextInt(800), r.nextInt(600), "/Coin.png"));
 			hud = new HUD();
+			this.addKeyListener(new KeyInput(handler));
 		}
 	}
 	
