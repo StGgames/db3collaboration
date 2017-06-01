@@ -1,0 +1,46 @@
+package com.main.gameStates.stateChange;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+public class StateChanger implements MouseListener {
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(MouseOver(e.getX(), e.getY()))
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private boolean MouseOver(int MouseX, int MouseY, int x, int y, int w, int h){
+		if(MouseX > x && MouseY > y){
+			if(MouseX > x + w && MouseY > y + h){
+				return true;
+			}else return false;
+		}else{
+			return false;
+		}
+	}
+}

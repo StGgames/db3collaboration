@@ -1,0 +1,63 @@
+package com.main.gameObject;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+public abstract class GameObject {
+	
+	//init variables
+	
+	protected int x;
+	protected int y;
+	private ID Id;
+	protected float velX;
+	protected float velY;
+	
+	//creating constructor
+	
+	public GameObject(ID Id, int x, int y) {
+		this.setId(Id);
+		this.x = x;
+		this.y = y;
+		this.setVelX(0);
+		this.setVelY(0);
+	}
+	
+	//creating abstract render method
+
+	public abstract void render(Graphics g);
+	
+	//creating abstract tick method
+	
+	public abstract void tick();
+	
+	//init velocity methods
+
+	public float getVelY() {
+		return velY;
+	}
+
+	public void setVelY(float velY) {
+		this.velY = velY;
+	}
+
+	public float getVelX() {
+		return velX;
+	}
+
+	public void setVelX(float velX) {
+		this.velX = velX;
+	}
+	
+	//creating get bounds method
+	
+	public abstract Rectangle getBounds();
+
+	public ID getId() {
+		return Id;
+	}
+
+	public void setId(ID id) {
+		Id = id;
+	}
+}

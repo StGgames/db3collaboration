@@ -1,0 +1,15 @@
+package com.main.server;
+
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class Server {
+	
+	Socket socket;
+	ServerSocket server;
+	
+	public static void main(String[] args){
+		
+	}
+	
+}

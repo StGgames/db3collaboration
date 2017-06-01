@@ -1,0 +1,54 @@
+package com.main.gameObject.trails;
+
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+import com.main.gameObject.handler.Handler;
+
+public class Trail extends GameObject {
+	
+	float alpha, life = 0.09f;
+	
+	int w, h;
+	
+	Color color;
+	
+	Handler handler;
+	
+	public Trail(ID Id, int x, int y, int w, int h, float alpha, Color color, Handler handler) {
+		super(Id, x, y);
+		this.alpha = alpha;
+		this.w = w;
+		this.h = h;
+		this.color = color;
+		this.handler = handler;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		g.setColor(color);
+		g.fillRect(x, y, w, h);
+	}
+
+	@Override
+	public void tick() {
+		if(alpha > 0){
+			alpha-=life;			
+		}
+	}
+	
+	private AlphaComposite makeTransparent(){
+		
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

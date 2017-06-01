@@ -1,0 +1,24 @@
+package com.main.window;
+
+import java.awt.Canvas;
+import java.net.Socket;
+
+@SuppressWarnings("serial")
+public class Game extends Canvas implements Runnable {
+	
+	public static Socket socket;
+	
+	public static final String MainIP = "";
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

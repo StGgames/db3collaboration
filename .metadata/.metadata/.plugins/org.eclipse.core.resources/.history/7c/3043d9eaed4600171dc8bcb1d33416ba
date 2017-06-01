@@ -1,0 +1,66 @@
+package com.main.gameObject.trails;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+import com.main.gameObject.handler.Handler;
+
+public class Trail extends GameObject {
+	
+	//init variables
+	
+	float alpha, life;
+	
+	int w, h;
+	
+	int red, green, blue;
+	
+	Handler handler;
+	
+	//creating constructor
+	
+	public Trail(ID Id, int x, int y, int w, int h, float alpha, float life, int red, int green, int blue, Handler handler) {
+		super(Id, x, y);
+		this.alpha = alpha;
+		this.w = w;
+		this.h = h;
+		this.red = red;
+		this.green = green;
+		this.blue = blue;
+		this.handler = handler;
+		
+		this.life = life;
+	}
+	
+	//render method
+	
+	@Override
+	public void render(Graphics g) {
+		g.setColor(new Color(red, green, blue, alpha));
+		g.fillRect(x, y, w, h);
+	}
+	
+	//tick method
+
+	@Override
+	public void tick() {
+		if(alpha > 0){
+			alpha-=life;
+			if(alpha <= 0){
+				handler.removeObject(this);
+			}
+		}
+	}
+	
+	//get boundaries method(which does nothing)
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

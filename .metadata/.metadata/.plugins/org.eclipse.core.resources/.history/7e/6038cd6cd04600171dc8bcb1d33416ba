@@ -1,0 +1,7 @@
+package com.main.gameStates.stateChange;
+
+import java.awt.event.MouseAdapter;
+
+public class StateChanger extends MouseAdapter {
+	public void mousePressed()
+}

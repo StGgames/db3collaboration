@@ -1,0 +1,12 @@
+package com.main.server;
+
+public class Server {
+	
+	Socket socket;
+	ServerSocket server;
+	
+	public static void main(String[] args){
+		
+	}
+	
+}

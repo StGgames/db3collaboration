@@ -1,0 +1,120 @@
+package com.main.gameObject.player;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+import com.main.gameObject.basicenemy.BasicEnemy;
+import com.main.gameObject.coin.Coin;
+import com.main.gameObject.handler.Handler;
+import com.main.gameObject.player.hud.HUD;
+import com.main.gameObject.trails.Trail;
+import com.main.window.Game;
+
+public class Player extends GameObject implements Runnable {
+	
+	//init variables
+	public static Color currentColor;
+	public boolean greenPicked = false;
+	public boolean bluePicked = false;
+	public boolean pinkPicked = false;
+	public boolean orangePicked = false;
+	public boolean isTrailEnabled = false;
+	private Handler handler;
+	private Random r = new Random();
+	
+	//init constructor
+	public Player(ID Id, int x, int y, Handler handler) {
+		super(Id, x, y);
+		// TODO Auto-generated constructor stub
+		this.handler = handler;
+	}
+	
+	//making collision work
+	public void collision(){
+		for(int i=0;i<this.handler.objects.size();i++){
+			GameObject temp = this.handler.objects.get(i);
+			
+			if(temp.getId() == ID.ENEMY){
+				if(temp.getBounds().intersects(this.getBounds())){
+					HUD.Health-=2;
+				}
+			}
+			if(temp.getId() == ID.COIN){
+				if(temp.getBounds().intersects(this.getBounds())){
+					handler.removeObject(temp);
+					HUD.Points++;
+					HUD.Coins++;
+					if(HUD.Coins % 3 == 0){
+						HUD.Coins = 0;
+						handler.addObject(new Coin(ID.COIN, r .nextInt(800 - 32), r.nextInt(600 - 32), "/Coin.png"));
+						handler.addObject(new Coin(ID.COIN, r.nextInt(800 - 32), r.nextInt(600 - 32), "/Coin.png"));
+						handler.addObject(new Coin(ID.COIN, r.nextInt(800 - 32), r.nextInt(600 - 32), "/Coin.png"));
+
+						handler.addObject(new BasicEnemy(ID.ENEMY, r.nextInt(800 - 32), r.nextInt(600 - 32), handler));
+					}
+				}
+			}
+		}
+	}
+	
+	//making Rectangle boundaries
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return new Rectangle(x, y, 32, 32);
+	}
+	
+	//making render method
+
+	@Override
+	public void render(Graphics g) {
+		if (greenPicked) {
+			currentColor = Color.green;
+		}else if(bluePicked){
+			currentColor = Color.blue;
+		}else if(pinkPicked){
+			currentColor = Color.pink;
+		}else if(orangePicked){
+			currentColor = Color.orange;
+		}
+		
+		g.setColor(currentColor);
+		g.fillRect(x, y, 32, 32);
+	}
+	
+	//making tick method
+	
+	@Override
+	public void tick() {
+		x+=getVelX();
+		y+=getVelY();
+		
+		//checking for x, y, w, h of screen's boundaries
+		
+		if(x >= Game.Width - 37){
+			x = Game.Width - 37;
+		}
+		
+		if(y >= Game.Height - 61){
+			y = Game.Height - 61;
+		}
+		
+		if(x <= 0){
+			x = 0;
+		}
+		
+		if(y <= 0){
+			y = 0;
+		}
+		
+		//creating particle effects
+		
+		handler.addObject(new Trail(ID.TRAIL, this.x, this.y, 32, 32, 1f, 0.2f, 0, 1, 0, this.handler));
+	}
+
+}

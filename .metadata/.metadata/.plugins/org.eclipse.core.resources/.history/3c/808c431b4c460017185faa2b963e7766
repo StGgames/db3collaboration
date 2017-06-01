@@ -1,0 +1,64 @@
+package com.main.keyinput;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+import com.main.gameObject.handler.Handler;
+
+public class KeyInput extends KeyAdapter {
+	Handler handler;
+	
+	public KeyInput(Handler handler) {
+		this.handler = handler;
+	}
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+	
+		for(int i=0;i<handler.objects.size();i++) {
+			GameObject temp = handler.objects.get(i);
+			if(temp.getId().equals(ID.PLAYER)) {
+				if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
+					temp.setVelY(-5);
+					handler.objects.set(i, temp);
+				}
+				if(key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
+					temp.setVelY(5);
+					handler.objects.set(i, temp);
+				}
+				if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
+					temp.setVelX(-5);
+					handler.objects.set(i, temp);
+				}
+				if(key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
+					temp.setVelX(5);
+					handler.objects.set(i, temp);
+				}
+			}
+			
+		}
+		
+		if(key == KeyEvent.VK_ESCAPE) {
+			System.exit(1);
+		}
+	}
+	public void keyReleased(KeyEvent e) {
+		int key = e.getKeyCode();
+	
+		for(int i=0;i<handler.objects.size();i++) {
+			GameObject temp = handler.objects.get(i);
+			if(temp.getId().equals(ID.PLAYER)) {
+				if(key == KeyEvent.VK_W || key == KeyEvent.VK_UP || key == KeyEvent.VK_DOWN || key == KeyEvent.VK_S) {
+					temp.setVelY(0);
+					handler.objects.set(i, temp);
+				}
+				if(key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT || key == KeyEvent.VK_RIGHT || key == KeyEvent.VK_D) {
+					temp.setVelX(0);
+					handler.objects.set(i, temp);
+				}
+			}
+			
+		}
+	}
+}

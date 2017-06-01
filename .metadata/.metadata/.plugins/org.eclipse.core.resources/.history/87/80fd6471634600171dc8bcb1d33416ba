@@ -1,0 +1,53 @@
+package com.main.gameObject.basicenemy;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+
+import com.main.gameObject.GameObject;
+import com.main.gameObject.ID;
+import com.main.gameObject.handler.Handler;
+import com.main.gameObject.trails.Trail;
+
+public class BasicEnemy extends GameObject {
+
+	Handler handler;
+	
+	public BasicEnemy(ID Id, int x, int y, Handler handler) {
+		super(Id, x, y);
+		// TODO Auto-generated constructor stub
+		setVelX(6);
+		setVelY(6);
+		
+		this.handler = handler;
+	}
+
+	@Override
+	public void render(Graphics g) {
+		g.setColor(Color.red);
+		g.fillRect(x, y, 16, 16);
+	}
+
+	@Override
+	public void tick() {
+		x+=getVelX();
+		y+=getVelY();
+		
+		if(x <= 0 || x >= 800 - 16){
+			velX = -getVelX();
+		}
+		
+		if(y <= 0 || y >= 600 - 16){
+			velY = -getVelY();
+		}
+		
+		handler.addObject(new Trail(ID.TRAIL, this.x, this.y, 16, 16, 0.9f, 0.1f));
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		// TODO Auto-generated method stub
+		return new Rectangle(x, y, 16, 16);
+	}
+
+}
